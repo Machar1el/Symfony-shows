@@ -1,0 +1,21 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block menu_calendar %}active{% endblock %}
+
+{% block contents %}
+    <section>
+    	<div class="container">
+    		
+			<h3>Liste des sorties</h3>
+
+            <ul>
+                {% for episode in episodes %}
+                    <li>
+                        <span class="season-span">{{ episode.season.show.name }}</span> S{{ episode.season.number }} E{{ episode.number }} : {{ episode.name }} - {{ episode.date|date('d/m/Y') }}
+                    </li>
+                {% endfor %}
+            </ul>
+			
+    	</div>
+    </section>
+{% endblock %}

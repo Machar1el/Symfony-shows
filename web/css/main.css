@@ -1,0 +1,11 @@
+span.season-span {
+  font-size: 20px;
+  color: #2f4a6b;
+  font-weight: bold;
+}
+
+p.episodes {
+	display:block;
+	font-size: 16px;
+	margin-left:50px;
+}

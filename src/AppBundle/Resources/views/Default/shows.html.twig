@@ -1,0 +1,45 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block menu_shows %}active{% endblock %}
+
+{% block contents %}
+    <section>
+    	<div class="container">
+    		<h3>{{ title }}</h3>
+			
+            <div class="row">
+    		{% for show in shows %}
+				<a href="{{ path('show', {id: show.id}) }}" class="tvshow col-sm-6">
+					<img class="pull-left" src="{{ web_image('uploads/'~show.image).resize(100, 100).png }}" />
+					<h4>{{ show.name }} ({{ show.seasons|length }} saisons)</h4>
+					{{ show.synopsis }}
+				</a>
+    		{% endfor %}
+            </div>
+			
+			{% if (app.request.attributes.get('_route')!='search') %}
+
+                <div class="text-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-lg">
+
+                            {% for i in 1..pageFin %}
+                                {% if page == i %}
+                                    <li class="active">
+                                {% else %}
+                                     <li>
+                                {% endif %}
+                                <a href="{{ path('shows', {id: i}) }}">{{ i }}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </nav>
+                </div>
+            {% endif %}
+
+    		{% if app.user and app.request.attributes.get('_route')!='search'%}
+    			<a href="{{ path('admin_add_show') }}">Ajouter une série</a>
+    		{% endif %}
+    	</div>
+    </section>
+{% endblock %}
